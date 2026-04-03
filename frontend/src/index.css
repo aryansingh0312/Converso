@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Poppins", ui-sans-serif, system-ui, sans-serif;
+
+  --animate-orb-1: orb-drift 14s ease-in-out infinite alternate;
+  --animate-orb-2: orb-drift 18s ease-in-out infinite alternate-reverse;
+  --animate-orb-3: orb-drift 22s ease-in-out infinite alternate;
+  --animate-badge-pulse: badge-pulse 2s ease-in-out infinite;
+  --animate-cursor-blink: cursor-blink 0.9s step-end infinite;
+  --animate-card-float: card-float 6s ease-in-out infinite;
+  --animate-notif-float: notif-float 7s ease-in-out infinite;
+  --animate-stat-float: notif-float 9s ease-in-out infinite alternate;
+  --animate-msg-pop: msg-pop 0.4s ease both;
+  --animate-scroll-bob: scroll-bob 1.6s ease-in-out infinite;
+  --animate-spin-fast: spin-fast 0.8s linear infinite;
+  --animate-drawer-in: drawer-in 0.2s ease;
+}
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-sans); background: #09090f; color: #dde1f8; margin: 0; }
+  h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); }
+}
+
+@keyframes orb-drift {
+  from { transform: translate(0,0) scale(1); }
+  to   { transform: translate(40px,30px) scale(1.08); }
+}
+@keyframes badge-pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(244,63,94,0.5); }
+  50%     { box-shadow: 0 0 0 5px rgba(244,63,94,0); }
+}
+@keyframes cursor-blink {
+  0%,100% { opacity: 1; } 50% { opacity: 0; }
+}
+@keyframes card-float {
+  0%,100% { transform: translateY(0) rotate(-1deg); }
+  50%     { transform: translateY(-12px) rotate(-1deg); }
+}
+@keyframes notif-float {
+  0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); }
+}
+@keyframes msg-pop {
+  from { opacity:0; transform: translateY(8px) scale(0.96); }
+  to   { opacity:1; transform: translateY(0) scale(1); }
+}
+@keyframes scroll-bob {
+  0%  { top:6px; opacity:1; } 80% { top:18px; opacity:0; } 100% { top:6px; opacity:0; }
+}
+@keyframes spin-fast { to { transform: rotate(360deg); } }
+@keyframes drawer-in {
+  from { opacity:0; transform:translateY(-8px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
